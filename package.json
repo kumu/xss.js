@@ -1,19 +1,39 @@
 {
-  "name": "xss.js",
+  "name": "simple-xss",
   "version": "0.0.1",
+  "homepage": "http://github.com/kumu/xss.js",
   "repository": "http://github.com/kumu/xss.js",
+  "description": "Simple whitelist-based html sanitizer for node and browser.",
+  "keywords": [
+    "xss",
+    "html",
+    "security",
+    "sanitation",
+    "sanitize"
+  ],
+  "bugs": {
+    "url": "https://github.com/kumu/xss.js/issues",
+    "email": "ryan@kumu.io"
+  },
+  "license": "MIT",
+  "files": [
+    "dist/xss.js",
+    "dist/xss.js.min",
+    "LICENSE"
+  ],
   "main": "index.js",
   "dependencies": {
-    "cheerio": "*",
-    "jquery": "*"
+    "cheerio": "*"
   },
   "devDependencies": {
+    "jquery": "*",
     "chai": "~1.9.0",
     "mocha": "~1.17.1",
     "gulp": "~3.2.4",
     "gulp-jshint": "~1.3.4",
     "browserify": "~3.32.0",
-    "browserify-shim": "~3.3.1"
+    "browserify-shim": "~3.3.1",
+    "gulp-replace": "~0.2.0"
   },
   "browserify": {
     "transform": [

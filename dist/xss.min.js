@@ -1,4 +1,4 @@
-// xss.js VERSION
+// xss.js 0.0.1
 // Copyright (c) 2014 Kumu
 // Freely distributed under the MIT license.
 (function($) {
