@@ -44,7 +44,7 @@ xss.defaults = {
 };
 ```
 
-See `lib/xss.js` for the default set of allowed elements, attributes, and
+See [lib/xss.js][source] for the default set of allowed elements, attributes, and
 supported protocols.
 
 # Contributing
@@ -63,6 +63,7 @@ make testb  # run tests within browser / jquery
 Now that you're up and running go ahead and hack away.  The full library
 is defined in `lib/xss.js`.
 
+[source]: https://github.com/kumu/xss.js/blob/master/lib/xss.js
 [1]: https://github.com/jch/html-pipeline
 [2]: https://github.com/MatthewMueller/cheerio
 [3]: https://github.com/jquery/jquery
