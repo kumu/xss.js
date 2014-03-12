@@ -1,32 +1,31 @@
-xss.js
+xss.js (simple-xss)
 ======
 
 Simple whitelist-based html sanitizer inspired by the `SanitizationFilter`
-in GitHub's [html-pipeline][1] library. Works in node (through [cheerio][2])
-and in the browser (through [jquery][3]).
+in GitHub's [html-pipeline][html-pipeline] library.
 
-```
-xss('<a href="#" onclick="doevil">click me</a>')
-// => <a href="#">click me</a>
-
-xss.url("javascript:doevil")
-// => ""
-```
+Works in node (through [cheerio][cheerio]) and in the browser
+(through [jquery][jquery]), and weighs in ~ 5kb unminimized.
 
 # API
 
 ```
-// Returns sanitized html
-xss(html[, options])
+var xss = require("simple-xss");
+xss(html[, options]);     // Returns sanitized html
+xss.url(url[, options]);  // Returns sanitized url
+```
 
-// Returns sanitized url
-xss.url(url[, options])
+In the browser, just include [jquery][jquery] and [xss.js](dist):
+
+```
+<script src="path/to/jquery.js" type="text/javascript"></script>
+<script src="path/to/xss.js" type="text/javascript"></script>
 ```
 
 # Options
 
-The library comes with a very sensible set of defaults. You can override the
-defaults by editing `xss.defaults`, or you can pass options inline to any call.
+The library comes with a sensible set of defaults. You can override them
+through `xss.defaults` or simply pass the options inline.
 
 ```
 # Simplified example that only permits <a>, <em> and <strong> elements.
@@ -64,6 +63,7 @@ Now that you're up and running go ahead and hack away.  The full library
 is defined in `lib/xss.js`.
 
 [source]: https://github.com/kumu/xss.js/blob/master/lib/xss.js
-[1]: https://github.com/jch/html-pipeline
-[2]: https://github.com/MatthewMueller/cheerio
-[3]: https://github.com/jquery/jquery
+[dist]: https://github.com/kumu/xss.js/blob/master/dist/xss.js
+[html-pipeline]: https://github.com/jch/html-pipeline
+[cheerio]: https://github.com/MatthewMueller/cheerio
+[jquery]: https://github.com/jquery/jquery
