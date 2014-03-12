@@ -1,0 +1,20 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>xss.js</title>
+  <link rel="stylesheet" href="mocha.css" />
+</head>
+<body>
+  <div id="mocha"></div>
+  <script src="mocha.js"></script>
+  <script>mocha.setup('bdd')</script>
+  <script src="jquery.js"></script>
+  <script src="xss.js"></script>
+  <script src="index.js"></script>
+  <script>
+    mocha.checkLeaks();
+    mocha.globals(['jQuery', 'xss']);
+    mocha.run();
+  </script>
+</body>
+</html>
