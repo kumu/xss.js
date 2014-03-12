@@ -16,11 +16,6 @@
     "email": "ryan@kumu.io"
   },
   "license": "MIT",
-  "files": [
-    "dist/xss.js",
-    "dist/xss.js.min",
-    "LICENSE"
-  ],
   "main": "index.js",
   "dependencies": {
     "cheerio": "*"
