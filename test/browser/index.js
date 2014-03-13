@@ -4531,6 +4531,19 @@ describe("sanitizeAttributes()", function() {
       xss._sanitizeAttributes($el, xss.defaults);
     }).to.not.throw();
   });
+
+  // Issue #2
+  // TODO: Add sinon-chai and use spies instead if we need to do any additional
+  // callback tests.
+  it("only iterates on own properties", function() {
+    var attrRemoved = false;
+    function AttrMap() {}; AttrMap.prototype.fail = function() {};
+    var $el = [{tagName: "div", attributes: new AttrMap()}];
+    $el.removeAttr = function() { attrRemoved = true; };
+    var options = {attributes: {all: /$^/}}; // match nothing, force removal
+    xss._sanitizeAttributes($el, options);
+    expect(attrRemoved).to.eql(false);
+  });
 });
 
 describe("getAttributeName()", function() {
