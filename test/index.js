@@ -72,3 +72,37 @@ describe("xss()", function() {
     it("&#106;", html('<a href="&#106;&#97;"></a>', '<a href=""></a>'));
   });
 });
+
+describe("sanitizeAttributes()", function() {
+  // Issue #1
+  it("handles undefined attributes", function() {
+    expect(function() {
+      var $el = [{tagName: "div", attributes: {"0": undefined}}];
+      xss._sanitizeAttributes($el, xss.defaults);
+    }).to.not.throw();
+  });
+});
+
+describe("getAttributeName()", function() {
+  describe("with numeric index (jquery/browser)", function() {
+    var attributes = {"0": {name: "class", "1": undefined}};
+
+    it("returns name", function() {
+      expect(xss._getAttributeName(attributes, 0)).to.eql("class");
+      expect(xss._getAttributeName(attributes, "0")).to.eql("class");
+    });
+
+    // Issue #1
+    it("handles undefined attributes", function() {
+      expect(xss._getAttributeName(attributes, "1")).to.eql(undefined);
+    });
+  });
+
+  describe("with named index (node/cheerio)", function() {
+    var attributes = {"class": {name: "class"}};
+
+    it("returns name", function() {
+      expect(xss._getAttributeName(attributes, "class")).to.eql("class");
+    });
+  });
+});
