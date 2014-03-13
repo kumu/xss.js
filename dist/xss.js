@@ -1,4 +1,4 @@
-// xss.js 1.0.2
+// xss.js 1.0.3
 // Copyright (c) 2014 Kumu
 // Freely distributed under the MIT license.
 (function($) {
@@ -206,11 +206,13 @@
     var whitelist = options.attributes[tagName] || options.attributes.all;
 
     for (var index in attributes) {
-      if ((attribute = getAttributeName(attributes, index))) {
-        if (whitelist.test(attribute)) {
-          sanitizeAttribute($el, attribute, options);
-        } else {
-          $el.removeAttr(attribute);
+      if (attributes.hasOwnProperty(index)) {
+        if ((attribute = getAttributeName(attributes, index))) {
+          if (whitelist.test(attribute)) {
+            sanitizeAttribute($el, attribute, options);
+          } else {
+            $el.removeAttr(attribute);
+          }
         }
       }
     }

@@ -1,6 +1,6 @@
 {
   "name": "simple-xss",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "homepage": "http://github.com/kumu/xss.js",
   "repository": "http://github.com/kumu/xss.js",
   "description": "Simple whitelist-based html sanitizer for node and browser.",
