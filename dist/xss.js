@@ -1,4 +1,4 @@
-// xss.js 1.0.1
+// xss.js 1.0.2
 // Copyright (c) 2014 Kumu
 // Freely distributed under the MIT license.
 (function($) {
@@ -9,6 +9,10 @@
   xss.url = function(url, options) {
     return sanitizeResource(url, options || xss.defaults);
   };
+
+  // Exposed for testing
+  xss._sanitizeAttributes = sanitizeAttributes;
+  xss._getAttributeName = getAttributeName;
 
   xss.defaults = {
     elements: [
@@ -198,15 +202,16 @@
 
   function sanitizeAttributes($el, options) {
     var tagName = getTagNameLower($el);
-    var attributes = getAttributes($el);
+    var attribute, attributes = getAttributes($el);
     var whitelist = options.attributes[tagName] || options.attributes.all;
 
-    for (var attribute in attributes) {
-      if (Number(attribute) == attribute) attribute = attributes[attribute].name;
-      if (whitelist.test(attribute)) {
-        sanitizeAttribute($el, attribute, options);
-      } else {
-        $el.removeAttr(attribute);
+    for (var index in attributes) {
+      if ((attribute = getAttributeName(attributes, index))) {
+        if (whitelist.test(attribute)) {
+          sanitizeAttribute($el, attribute, options);
+        } else {
+          $el.removeAttr(attribute);
+        }
       }
     }
   }
@@ -233,6 +238,21 @@
 
   function getAttributes($el) {
     return $el[0].attributes || $el[0].attribs;
+  }
+
+  // In the browser the attributes object looks like:
+  // {"0": {"name": "class"}, "1": ...}
+  //
+  // In node / cheerio the attributes are keyed by name instead.
+  //
+  // - in IE9 it's possible for attribute to be undefined (issue #1)
+  function getAttributeName(attributes, index) {
+    if (Number(index) == index) {
+      var attribute = attributes[String(index)];
+      return attribute && attribute.name;
+    } else {
+      return index;
+    }
   }
 
   if (typeof window == "undefined") {
