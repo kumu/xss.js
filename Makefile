@@ -10,4 +10,7 @@ browserify-tests:
 lint:
 	@gulp lint
 
+version:
+	@gulp build && npm publish .
+
 .PHONY: test
