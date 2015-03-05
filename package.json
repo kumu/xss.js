@@ -1,8 +1,8 @@
 {
   "name": "simple-xss",
-  "version": "1.0.3",
-  "homepage": "http://github.com/kumu/xss.js",
-  "repository": "http://github.com/kumu/xss.js",
+  "version": "1.0.5",
+  "homepage": "http://github.com/rymohr/cockblock",
+  "repository": "http://github.com/rymohr/cockblock",
   "description": "Simple whitelist-based html sanitizer for node and browser.",
   "keywords": [
     "xss",
@@ -12,7 +12,7 @@
     "sanitize"
   ],
   "bugs": {
-    "url": "https://github.com/kumu/xss.js/issues",
+    "url": "https://github.com/rymohr/cockblock/issues",
     "email": "ryan@kumu.io"
   },
   "license": "MIT",

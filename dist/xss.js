@@ -1,4 +1,4 @@
-// xss.js 1.0.3
+// xss.js 1.0.5
 // Copyright (c) 2014 Kumu
 // Freely distributed under the MIT license.
 (function($) {
